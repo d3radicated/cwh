@@ -138,7 +138,7 @@ class CloudWatch extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    protected function write(array $record)
+    protected function write(array $record): void
     {
         $records = $this->formatRecords($record);
 
