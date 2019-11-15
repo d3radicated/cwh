@@ -3,6 +3,7 @@
 namespace Maxbanton\Cwh\Handler;
 
 use Aws\CloudWatchLogs\CloudWatchLogsClient;
+use Monolog\Formatter\FormatterInterface;
 use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\AbstractProcessingHandler;
 use Monolog\Logger;
@@ -375,7 +376,7 @@ class CloudWatch extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    protected function getDefaultFormatter()
+    protected function getDefaultFormatter(): FormatterInterface
     {
         return new LineFormatter("%channel%: %level_name%: %message% %context% %extra%", null, false, true);
     }
@@ -383,7 +384,7 @@ class CloudWatch extends AbstractProcessingHandler
     /**
      * {@inheritdoc}
      */
-    public function close()
+    public function close(): void
     {
         $this->flushBuffer();
     }
